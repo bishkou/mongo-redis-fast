@@ -1,10 +1,13 @@
 const express = require('express')
-const { json } = require('body-parser')
+const cors = require('cors')
 const mongoose = require('mongoose')
+
+require('dotenv').config();
 
 const app = express()
 
-app.use(json)
+app.use(express.json())
+app.use(cors())
 
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
@@ -17,7 +20,9 @@ mongoose.connect(process.env.DATABASE_URL, {
     });
 
 app.get('/', (req, res) => {
-    res.send('HI ther')
+    res.json({
+        message: 'YEEEEEEEESSSS'
+    })
 })
 
 app.listen(3000, () => {
