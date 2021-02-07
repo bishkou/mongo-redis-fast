@@ -3,6 +3,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 
 require('dotenv').config();
+require('./services/cache');
 
 const app = express()
 
@@ -11,6 +12,7 @@ const users = require('./routes/users');
 
 app.use(express.json())
 app.use(cors())
+
 
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
