@@ -6,6 +6,9 @@ require('dotenv').config();
 
 const app = express()
 
+const articles = require('./routes/articles');
+const users = require('./routes/users');
+
 app.use(express.json())
 app.use(cors())
 
@@ -19,11 +22,9 @@ mongoose.connect(process.env.DATABASE_URL, {
         console.log('connection failed');
     });
 
-app.get('/', (req, res) => {
-    res.json({
-        message: 'YEEEEEEEESSSS'
-    })
-})
+app.use('/api/article', articles);
+app.use('/api/user', users);
+
 
 app.listen(3000, () => {
     console.log("Listening on Port 3000")
